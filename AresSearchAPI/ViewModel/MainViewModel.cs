@@ -73,7 +73,6 @@ namespace AresSearchAPI.ViewModel
             if (dbEntity != default)
             {
                 companyInformation = dbEntity;
-                text.AppendLine("From db");
             }
             else
             {
@@ -105,17 +104,17 @@ namespace AresSearchAPI.ViewModel
             var mailingAddressProps = companyInformation.MailingAddress!.GetType().GetProperties();
 
             //loop through CompanyInformation object's primitives
-            foreach (var prop in companyInformationProps.Where(x => x.PropertyType != typeof(HeadquartersModel) && x.PropertyType != typeof(MailingAddressModel)))
+            foreach (var prop in companyInformationProps.Where(x => x.PropertyType != typeof(HeadquartersModel) && x.PropertyType != typeof(MailingAddressModel) && x.Name != "Id"))
             {
                 text.AppendLine($"{prop.Name}: {prop.GetValue(companyInformation, null)?.ToString()}");
             }
 
-            foreach (var prop in headQuartersProps)
+            foreach (var prop in headQuartersProps.Where(x => x.Name != "Id"))
             {
                 text.AppendLine($"{prop.Name}: {prop.GetValue(companyInformation.Headquarters, null)?.ToString()}");
             }
 
-            foreach (var prop in mailingAddressProps)
+            foreach (var prop in mailingAddressProps.Where(x => x.Name != "Id"))
             {
                 text.AppendLine($"{prop.Name}: {prop.GetValue(companyInformation.MailingAddress, null)?.ToString()}");
             }
