@@ -110,13 +110,11 @@ namespace AresSearchAPI.ViewModel
                 text.AppendLine($"{prop.Name}: {prop.GetValue(companyInformation, null)?.ToString()}");
             }
 
-            //loop through Headquarters object's primitives
             foreach (var prop in headQuartersProps)
             {
                 text.AppendLine($"{prop.Name}: {prop.GetValue(companyInformation.Headquarters, null)?.ToString()}");
             }
 
-            //loop through MailingAddress object's primitives
             foreach (var prop in mailingAddressProps)
             {
                 text.AppendLine($"{prop.Name}: {prop.GetValue(companyInformation.MailingAddress, null)?.ToString()}");
